@@ -163,9 +163,7 @@ class IMessageStats:  # pylint: disable=invalid-name,too-many-public-methods
         self.cursor.execute(query)
         results = []
         for month, you, them in self.cursor.fetchall():
-            results.append(
-                {"month": MONTHS[month - 1], "you": you or 0, "them": them or 0}
-            )
+            results.append({"month": MONTHS[month - 1], "you": you or 0, "them": them or 0})
         return results
 
     def get_busiest_days_of_week(self) -> list[dict]:
@@ -179,10 +177,7 @@ class IMessageStats:  # pylint: disable=invalid-name,too-many-public-methods
             ORDER BY count DESC
         """
         self.cursor.execute(query)
-        return [
-            {"day": DAYS_OF_WEEK[dow], "count": count}
-            for dow, count in self.cursor.fetchall()
-        ]
+        return [{"day": DAYS_OF_WEEK[dow], "count": count} for dow, count in self.cursor.fetchall()]
 
     def get_peak_hours(self) -> list[dict]:
         """Get top 5 busiest hours."""
@@ -341,8 +336,7 @@ class IMessageStats:  # pylint: disable=invalid-name,too-many-public-methods
     def get_voice_memos(self) -> dict:
         """Get voice memo counts."""
         audio_condition = (
-            "AND (a.mime_type LIKE '%audio%' "
-            "OR a.filename LIKE '%.caf' OR a.filename LIKE '%.m4a')"
+            "AND (a.mime_type LIKE '%audio%' OR a.filename LIKE '%.caf' OR a.filename LIKE '%.m4a')"
         )
         audio_join = (
             "JOIN message_attachment_join maj ON m.ROWID = maj.message_id "
@@ -522,15 +516,9 @@ class IMessageStats:  # pylint: disable=invalid-name,too-many-public-methods
             else:
                 their_response_times.append(time_diff)
 
-        your_avg = (
-            sum(your_response_times) / len(your_response_times)
-            if your_response_times
-            else 0
-        )
+        your_avg = sum(your_response_times) / len(your_response_times) if your_response_times else 0
         their_avg = (
-            sum(their_response_times) / len(their_response_times)
-            if their_response_times
-            else 0
+            sum(their_response_times) / len(their_response_times) if their_response_times else 0
         )
 
         return {"you": round(your_avg, 1), "them": round(their_avg, 1)}
@@ -581,8 +569,7 @@ class IMessageStats:  # pylint: disable=invalid-name,too-many-public-methods
                         emoji_counter[char] += 1
 
         return [
-            {"emoji": emoji, "count": count}
-            for emoji, count in emoji_counter.most_common(limit)
+            {"emoji": emoji, "count": count} for emoji, count in emoji_counter.most_common(limit)
         ]
 
     def get_milestones(self) -> list[dict]:
@@ -619,9 +606,7 @@ class IMessageStats:  # pylint: disable=invalid-name,too-many-public-methods
                 datetime(m.date/1000000000 + 978307200, 'unixepoch', 'localtime'))
             {self._base_query()}
         """
-        days_texting = len(
-            {row[0] for row in self.cursor.execute(days_query).fetchall()}
-        )
+        days_texting = len({row[0] for row in self.cursor.execute(days_query).fetchall()})
 
         print(f"  Total messages: {totals['total']:,}")
 
@@ -742,9 +727,7 @@ Examples:
         print("\nTip: Copy your chat.db first:")
         print("  cp ~/Library/Messages/chat.db ~/Desktop/chat.db")
         print("\nThen run:")
-        print(
-            f"  python imessage_wrapped.py --phone {args.phone} --db ~/Desktop/chat.db"
-        )
+        print(f"  python imessage_wrapped.py --phone {args.phone} --db ~/Desktop/chat.db")
         return 1
 
     print(f"\niMessage Wrapped {args.year}")

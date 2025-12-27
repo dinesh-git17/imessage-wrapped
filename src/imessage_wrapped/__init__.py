@@ -7,14 +7,14 @@ comprehensive statistics from the macOS chat.db database.
 
 from .imessage_wrapped import (
     APPLE_EPOCH_OFFSET,
-    NANOSECONDS,
-    REACTION_TYPES,
     DAYS_OF_WEEK,
     MONTHS,
-    get_date_filter,
+    NANOSECONDS,
+    REACTION_TYPES,
+    IMessageStats,
     apple_to_datetime,
     format_datetime,
-    IMessageStats,
+    get_date_filter,
     main,
 )
 

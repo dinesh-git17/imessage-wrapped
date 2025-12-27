@@ -15,6 +15,7 @@ import pytest
 
 from imessage_wrapped import (
     APPLE_EPOCH_OFFSET,
+    DAYS_OF_WEEK,
     NANOSECONDS,
     IMessageStats,
     apple_to_datetime,
@@ -168,9 +169,7 @@ def test_db():
     cursor.execute(
         "INSERT INTO attachment (ROWID, filename, mime_type) VALUES (1, 'voice.caf', 'audio/x-caf')"
     )
-    cursor.execute(
-        "INSERT INTO message_attachment_join (message_id, attachment_id) VALUES (19, 1)"
-    )
+    cursor.execute("INSERT INTO message_attachment_join (message_id, attachment_id) VALUES (19, 1)")
     cursor.execute("UPDATE message SET cache_has_attachments = 1 WHERE ROWID = 19")
 
     conn.commit()
@@ -299,18 +298,9 @@ class TestMessageCounts:
         result = stats.get_busiest_days_of_week()
 
         assert isinstance(result, list)
-        valid_days = [
-            "Sunday",
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-        ]
 
         for day_data in result:
-            assert day_data["day"] in valid_days
+            assert day_data["day"] in DAYS_OF_WEEK
             assert isinstance(day_data["count"], int)
 
     def test_get_peak_hours(self, stats):
