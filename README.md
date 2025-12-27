@@ -59,7 +59,7 @@ No external packages are required.
 ### Option 1: Install from PyPI (recommended)
 
 ```bash
-pip install imessage-wrapped
+pip install imessage-year-wrapped
 ```
 
 ### Option 2: Install from GitHub

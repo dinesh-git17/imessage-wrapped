@@ -1,5 +1,5 @@
 [project]
-name = "imessage-wrapped"
+name = "imessage-year-wrapped"
 version = "1.0.0"
 description = "Extract iMessage statistics for your year in review"
 readme = "README.md"
