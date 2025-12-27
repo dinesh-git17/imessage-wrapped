@@ -56,23 +56,32 @@ No external packages are required.
 
 ## Installation
 
-1. Clone or download this repository to your local machine:
+### Option 1: Install from PyPI (recommended)
 
 ```bash
-git clone <repository-url>
-cd imessage-wrapped-data
+pip install imessage-wrapped
 ```
 
-2. Verify Python 3.8+ is installed:
+### Option 2: Install from GitHub
 
 ```bash
-python3 --version
+pip install git+https://github.com/dinesh-git17/imessage-wrapped.git
 ```
 
-3. Make the script executable (optional):
+### Option 3: Install from source
 
 ```bash
-chmod +x imessage_wrapped.py
+git clone https://github.com/dinesh-git17/imessage-wrapped.git
+cd imessage-wrapped
+pip install .
+```
+
+### Development installation
+
+```bash
+git clone https://github.com/dinesh-git17/imessage-wrapped.git
+cd imessage-wrapped
+pip install -e ".[dev]"  # Includes pytest, pylint, ruff
 ```
 
 ## Database Access
@@ -116,7 +125,7 @@ To analyze iPhone messages not synced to your Mac:
 ### Basic Usage
 
 ```bash
-python3 imessage_wrapped.py --phone <PHONE_NUMBER> --year <YEAR> --db <PATH_TO_DB>
+imessage-wrapped --phone <PHONE_NUMBER> --year <YEAR> --db <PATH_TO_DB>
 ```
 
 ### Arguments
@@ -133,19 +142,19 @@ python3 imessage_wrapped.py --phone <PHONE_NUMBER> --year <YEAR> --db <PATH_TO_D
 Analyze 2025 messages with a contact:
 
 ```bash
-python3 imessage_wrapped.py --phone 5551234567 --year 2025 --db ~/Desktop/chat.db
+imessage-wrapped --phone 5551234567 --year 2025 --db ~/Desktop/chat.db
 ```
 
 Specify a custom output file:
 
 ```bash
-python3 imessage_wrapped.py --phone 5551234567 --year 2025 --output stats_2025.json
+imessage-wrapped --phone 5551234567 --year 2025 --output stats_2025.json
 ```
 
 Analyze the current year using the default database location:
 
 ```bash
-python3 imessage_wrapped.py --phone 5551234567
+imessage-wrapped --phone 5551234567
 ```
 
 ### Finding a Contact's Phone Number

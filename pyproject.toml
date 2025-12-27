@@ -41,6 +41,9 @@ Repository = "https://github.com/dinesh-git17/imessage-wrapped"
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools.packages.find]
+where = ["src"]
+
 [tool.ruff]
 line-length = 100
 target-version = "py38"
@@ -58,7 +61,7 @@ disable = [
 max-line-length = 100
 
 [tool.pytest.ini_options]
-testpaths = ["."]
+testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_functions = ["test_*"]
 addopts = "-v"
