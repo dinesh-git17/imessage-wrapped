@@ -1,0 +1,64 @@
+[project]
+name = "imessage-wrapped"
+version = "1.0.0"
+description = "Extract iMessage statistics for your year in review"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+keywords = ["imessage", "macos", "statistics", "wrapped", "year-in-review"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Communications :: Chat",
+    "Topic :: Utilities",
+]
+
+# No runtime dependencies - uses only Python standard library
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pylint>=2.17.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+imessage-wrapped = "imessage_wrapped:main"
+
+[project.urls]
+Repository = "https://github.com/dinesh-git17/imessage-wrapped"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM"]
+ignore = ["E501"]  # Line too long - handled by formatter
+
+[tool.pylint.messages_control]
+disable = [
+    "line-too-long",  # Handled by ruff
+]
+
+[tool.pylint.format]
+max-line-length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["."]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v"
